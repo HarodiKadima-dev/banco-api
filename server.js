@@ -41,7 +41,7 @@ async function iniciarServidor(){
     await conectarBanco();
 
     app.listen(3000, ()=> {
-        console.log("Servidor iniciado com sucesso - conflito resolvido");
+        console.log("Servidor iniciado - alteração para testar revert");
 
     });
 
