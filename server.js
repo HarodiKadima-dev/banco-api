@@ -41,7 +41,7 @@ async function iniciarServidor(){
     await conectarBanco();
 
     app.listen(3000, ()=> {
-        console.log("Servidor iniciado com sucesso - com gitHub");
+        console.log("Servidor iniciado com sucesso - feature teste");
 
     });
 
