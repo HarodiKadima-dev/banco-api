@@ -39,14 +39,6 @@ async function iniciarServidor(){
 
     await conectarBanco();
 
-console.log("ROTAS CARREGADAS");
-console.log(app._router.stack
-    .filter(r => r.route)
-    .map(r => ({
-        method: Object.keys(r.route.methods),
-        path: r.route.path
-    }))
-);
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, "0.0.0.0", () => {
