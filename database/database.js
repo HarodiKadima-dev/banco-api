@@ -13,7 +13,11 @@ let db;
          `CREATE TABLE clientes(
              id INTEGER PRIMARY KEY AUTOINCREMENT,
              nome TEXT NOT NULL)`);
-     
+     db.run(
+         `ALTER TABLE clientes
+         ADD COLUMN telefone TEXT`
+         );
+         
      db.run(`CREATE TABLE contas(
      id INTEGER PRIMARY KEY AUTOINCREMENT,
      saldo REAL NOT NULL CHECK (saldo >=0 ),

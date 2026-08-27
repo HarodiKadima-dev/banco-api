@@ -1,18 +1,27 @@
 const {getDb} = require("../database/database");
 
 //criar
-function criarCliente(nome){
-    
+function criarCliente(nome) {
+    const db = getDb();
 
-const db = getDb();
-
-const resultado = db.run(
-    "INSERT INTO clientes (nome) VALUES(?)",
-    [nome]
+    db.run(
+        "INSERT INTO clientes (nome) VALUES(?)",
+        [nome]
     );
+
+    const resultado = db.exec(
+        "SELECT last_insert_rowid() AS id"
+    );
+
+    console.log("RESULTADO DO SQLITE:", resultado);
+
+    const id = resultado[0].values[0][0];
+
+    console.log("ID:", id);
+
     return {
-        id:resultado.lastInsertRowid,
-        nome
+        id: id,
+        nome: nome
     };
 }
     //buscar todos os clientes
