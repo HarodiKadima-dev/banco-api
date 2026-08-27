@@ -1,13 +1,12 @@
 require("dotenv").config();
 
 const express = require("express");
+const cors = require("cors");
 const {conectarBanco} = require("./database/database");
-
 const app = express();
 
 app.use(express.json());
-
-
+app.use(cors());
 // routes
 const contasRoutes = require("./routes/contas.routes");
 const clientesRoutes = require("./routes/clientes.routes");
@@ -40,12 +39,20 @@ async function iniciarServidor(){
 
     await conectarBanco();
 
-    app.listen(3000, ()=> {
-        console.log("Servidor iniciado com sucesso - com gitHub");
+console.log("ROTAS CARREGADAS");
+console.log(app._router.stack
+    .filter(r => r.route)
+    .map(r => ({
+        method: Object.keys(r.route.methods),
+        path: r.route.path
+    }))
+);
+const PORT = process.env.PORT || 3000;
 
-    });
+app.listen(PORT, "0.0.0.0", () => {
+    console.log(`Servidor iniciado na porta ${PORT}`);
+});
 
 }
-
 
 iniciarServidor();

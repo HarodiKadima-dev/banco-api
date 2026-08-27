@@ -4,7 +4,7 @@ const criarErro = require("../utils/criarErro");
 function autenticar(req, res, next){
     const authHeader = req.headers.authorization;
     if(!authHeader){
-        criarErro("Token não autorizado",401);
+        return criarErro("Token não autorizado",401);
     
     }
     
